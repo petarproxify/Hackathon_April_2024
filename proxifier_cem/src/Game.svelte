@@ -495,8 +495,7 @@
     <div class="game-info">
       <p class="info">Score: {score}</p>
       <p class="info">Level: {currentLevel + 1}</p>
-      <p class="info">Roles: {levels[currentLevel].roles.join(', ')}</p>
-      <p class="info">Logos: {counter}/{levels[currentLevel].logos.length}</p>
+      <p class="info">Frameworks: {counter}/{levels[currentLevel].logos.length}</p>
     </div>
   {/if}
 
