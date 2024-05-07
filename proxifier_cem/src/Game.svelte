@@ -3,9 +3,11 @@
 
   let canvas, ctx;
   let score = 0;
+  let totalScore = 0;
   let lastRenderTime = 0;
   let currentLogoIndex = 0; // Index to track the current logo
   let currentLevel = 0;
+  let currentGuess = '';
   let levels = [
     {
       logoSpeedPerSecond: 100,
@@ -13,6 +15,7 @@
       logos: // Mobile Development
         [{
           src: '/assets/logos/Android.png',
+          name: 'Android',
           image: new Image(),
           position: { x: 250, y: 0 },
           hasFallen: false,
@@ -21,14 +24,16 @@
         },
           {
             src: '/assets/logos/iOS.png',
+            name: 'iOS',
             image: new Image(),
-            position: { x: 50, y: 0 },
+            position: { x: 150, y: 0 },
             hasFallen: false,
             roles: ['Mobile'],
             languages: ['Swift', 'Objective-C']
           },
           {
             src: '/assets/logos/Flutter.png',
+            name: 'Flutter',
             image: new Image(),
             position: { x: 120, y: 0 },
             hasFallen: false,
@@ -37,6 +42,7 @@
           },
           {
             src: '/assets/logos/React Native.png',
+            name: 'React Native',
             image: new Image(),
             position: { x: 153, y: 0 },
             hasFallen: false,
@@ -46,53 +52,60 @@
           // Frontend Development
           {
             src: '/assets/logos/Svelte.png',
+            name: 'Svelte',
             image: new Image(),
-            position: { x: 100, y: 100 },
+            position: { x: 100, y: 0 },
             hasFallen: false,
             roles: ['Frontend']
           },
           {
             src: '/assets/logos/React.js.png',
+            name: 'React.js',
             image: new Image(),
-            position: { x: 300, y: 100 },
+            position: { x: 300, y: 0 },
             hasFallen: false,
             roles: ['Frontend']
           },
           {
             src: '/assets/logos/Angular.png',
+            name: 'Angular',
             image: new Image(),
-            position: { x: 221, y: 100 },
+            position: { x: 221, y: 0 },
             hasFallen: false,
             roles: ['Frontend']
           },
           {
             src: '/assets/logos/Vue.js.png',
+            name: 'Vue.js',
             image: new Image(),
-            position: { x: 270, y: 100 },
+            position: { x: 270, y: 0 },
             hasFallen: false,
             roles: ['Frontend']
           },
           // Backend Development
           {
             src: '/assets/logos/Node.js.png',
+            name: 'Node.js',
             image: new Image(),
-            position: { x: 150, y: 200 },
+            position: { x: 150, y: 0 },
             hasFallen: false,
             roles: ['Backend'],
             languages: ['JavaScript']
           },
           {
             src: '/assets/logos/Django.png',
+            name: 'Django',
             image: new Image(),
-            position: { x: 167, y: 200 },
+            position: { x: 167, y: 0 },
             hasFallen: false,
             roles: ['Backend'],
             languages: ['Python']
           },
           {
             src: '/assets/logos/Spring.png',
+            name: 'Spring',
             image: new Image(),
-            position: { x: 50, y: 200 },
+            position: { x: 50, y: 0 },
             hasFallen: false,
             roles: ['Backend'],
             languages: ['Java']
@@ -106,6 +119,7 @@
         [
           {
             src: '/assets/logos/AWS.png',
+            name: 'AWS',
             image: new Image(),
             position: { x: 50, y: 0 },
             hasFallen: false,
@@ -113,13 +127,15 @@
           },
           {
             src: '/assets/logos/Swift.png',
+            name: 'Swift',
             image: new Image(),
             position: { x: 50, y: 0 },
             hasFallen: false,
             roles: ['Mobile']
           },
           {
-            src: '/assets/logos/C#.png',
+            src: '/assets/logos/CSharp.png',
+            name: 'C#',
             image: new Image(),
             position: { x: 120, y: 0 },
             hasFallen: false,
@@ -127,14 +143,16 @@
           },
           {
             src: '/assets/logos/TensorFlow.png',
+            name: 'TensorFlow',
             image: new Image(),
-            position: { x: 150, y: 200 },
+            position: { x: 150, y: 0 },
             hasFallen: false,
             roles: ['Data Science']
           },
 
           {
             src: '/assets/logos/Docker.png',
+            name: 'Docker',
             image: new Image(),
             position: { x: 153, y: 0 },
             hasFallen: false,
@@ -143,20 +161,22 @@
           // Frontend Development
           {
             src: '/assets/logos/Kubernetes.png',
+            name: 'Kubernetes',
             image: new Image(),
-            position: { x: 100, y: 100 },
+            position: { x: 100, y: 0 },
             hasFallen: false,
             roles: ['DevOps']
           },
           {
             src: '/assets/logos/Laravel.png',
             image: new Image(),
-            position: { x: 300, y: 100 },
+            position: { x: 300, y: 0 },
             hasFallen: false,
             roles: ['Backend']
           },
           {
             src: '/assets/logos/Azure.png',
+            name: 'Azure',
             image: new Image(),
             position: { x: 250, y: 0 },
             hasFallen: false,
@@ -165,28 +185,30 @@
           {
             src: '/assets/logos/Pandas.png',
             image: new Image(),
-            position: { x: 221, y: 100 },
+            position: { x: 221, y: 0 },
             hasFallen: false,
             roles: ['Data Science']
           },
           {
             src: '/assets/logos/Numpy.png',
             image: new Image(),
-            position: { x: 270, y: 100 },
+            position: { x: 270, y: 0 },
             hasFallen: false,
             roles: ['Data Science']
           },
           {
             src: '/assets/logos/Symfony.png',
+            name: 'Symfony',
             image: new Image(),
-            position: { x: 167, y: 200 },
+            position: { x: 167, y: 0 },
             hasFallen: false,
             roles: ['Backend']
           },
           {
             src: '/assets/logos/R.png',
+            name: 'R',
             image: new Image(),
-            position: { x: 50, y: 200 },
+            position: { x: 50, y: 0 },
             hasFallen: false,
             roles: ['Data Science']
           }
@@ -199,6 +221,7 @@
         [
           {
             src: '/assets/logos/Snowflake.png',
+            name: 'Snowflake',
             image: new Image(),
             position: { x: 50, y: 0 },
             hasFallen: false,
@@ -206,6 +229,7 @@
           },
           {
             src: '/assets/logos/Microsoft Power BI.png',
+            name: 'Microsoft Power BI',
             image: new Image(),
             position: { x: 120, y: 0 },
             hasFallen: false,
@@ -213,6 +237,7 @@
           },
           {
             src: '/assets/logos/FastAPI.png',
+            name: 'FastAPI',
             image: new Image(),
             position: { x: 153, y: 0 },
             hasFallen: false,
@@ -220,20 +245,23 @@
           },
           {
             src: '/assets/logos/Ionic.png',
+            name: 'Ionic',
             image: new Image(),
-            position: { x: 100, y: 100 },
+            position: { x: 100, y: 0 },
             hasFallen: false,
             roles: ['Mobile']
           },
           {
             src: '/assets/logos/Laravel.png',
+            name: 'Laravel',
             image: new Image(),
-            position: { x: 300, y: 100 },
+            position: { x: 300, y: 0 },
             hasFallen: false,
             roles: ['Backend']
           },
           {
             src: '/assets/logos/PHP.png',
+            name: 'PHP',
             image: new Image(),
             position: { x: 250, y: 0 },
             hasFallen: false,
@@ -241,29 +269,33 @@
           },
           {
             src: '/assets/logos/SQL.png',
+            name: 'SQL',
             image: new Image(),
-            position: { x: 221, y: 100 },
+            position: { x: 221, y: 0 },
             hasFallen: false,
             roles: ['Backend', 'Data Engineering']
           },
           {
             src: '/assets/logos/Tableau.png',
+            name: 'Tableau',
             image: new Image(),
-            position: { x: 270, y: 100 },
+            position: { x: 270, y: 0 },
             hasFallen: false,
             roles: ['BI']
           },
           {
             src: '/assets/logos/Google Cloud.png',
+            name: 'Google Cloud',
             image: new Image(),
-            position: { x: 167, y: 200 },
+            position: { x: 167, y: 0 },
             hasFallen: false,
             roles: ['DevOps']
           },
           {
             src: '/assets/logos/Figma.png',
+            name: 'Figma',
             image: new Image(),
-            position: { x: 50, y: 200 },
+            position: { x: 50, y: 0 },
             hasFallen: false,
             roles: ['Design']
           }
@@ -304,6 +336,7 @@
 
   function update(timeDelta) {
     let currentLogo = levels[currentLevel].logos[currentLogoIndex];
+    currentGuess = currentLogo.name;
     const moveDistance = levels[currentLevel].logoSpeedPerSecond * timeDelta;
     currentLogo.position.y += moveDistance;
 
@@ -370,7 +403,10 @@
 
   function loadNextLevel() {
     gameFinished = false;
+    totalScore += score;
     score = 0;
+    lastRenderTime = 0;
+    counter = 0;
     loadLevel(currentLevel + 1);
     canvas.style.display = '';
     closeLevelEndPopup();
@@ -386,8 +422,8 @@
   }
 
   function loadLevel(levelIndex) {
-    loadLogos();
     currentLevel = levelIndex;
+    loadLogos();
 
     requestAnimationFrame(updateAndDraw); // Added to start the game loop
   }
@@ -490,8 +526,9 @@
     <h1>Game Over!</h1>
     <h2>Your score: {score}</h2>
   {:else}
-    <h1>Developer Logo Game</h1>
+    <h1>Match the Frameworks!</h1>
     <p>Use the arrow keys to move the logos to the correct role at the bottom.</p>
+    <p>Current: {currentGuess}</p>
     <div class="game-info">
       <p class="info">Score: {score}</p>
       <p class="info">Level: {currentLevel + 1}</p>
