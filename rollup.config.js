@@ -3,7 +3,7 @@ import svelte from 'rollup-plugin-svelte';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import livereload from 'rollup-plugin-livereload';
-import { terser } from '@rollup/plugin-terser';
+import terser from '@rollup/plugin-terser'; // Use default export for terser
 import css from 'rollup-plugin-css-only';
 
 const production = !process.env.ROLLUP_WATCH;
@@ -51,7 +51,7 @@ export default {
 		commonjs(),
 		!production && serve(),
 		!production && livereload('public'),
-		production && terser()
+		production && terser() // Use default export here as well
 	],
 	watch: {
 		clearScreen: false
