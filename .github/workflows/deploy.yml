@@ -24,10 +24,6 @@ jobs:
     - name: Build the Svelte app
       run: npm run build
 
-    - name: Start the Svelte app
-      run: npm start
-
-
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
