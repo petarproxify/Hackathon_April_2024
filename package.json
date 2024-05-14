@@ -4,11 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
-    "start": "sirv public --no-clear",
-    "deploy": "npm run build && gh-pages -d public"
-  },
+  "build": "rollup -c",
+  "dev": "rollup -c -w",
+  "start": "sirv public --no-clear",
+  "deploy": "npm run build && gh-pages -d public"
+},
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.0.0",
     "@rollup/plugin-node-resolve": "^15.0.0",
