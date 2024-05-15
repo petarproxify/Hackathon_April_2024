@@ -35,8 +35,8 @@ export default {
 		sourcemap: true,
 		format: 'iife',
 		name: 'app',
-		file: 'build/bundle.js',
-		assetFileNames: 'https://github.com/petarproxify/Hackathon_April_2024/tree/gh-pages/assets/logos'
+		file: 'public/build/bundle.js',
+		assetFileNames: 'public/build/bundle.js/assets/logos'
 	},
 	plugins: [
 		svelte({
