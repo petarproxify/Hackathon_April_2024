@@ -35,8 +35,7 @@ export default {
 		sourcemap: true,
 		format: 'iife',
 		name: 'app',
-		file: 'public/build/bundle.js',
-		assetFileNames: 'public/build/bundle.js/assets/logos'
+		file: 'public/build/bundle.js'
 	},
 	plugins: [
 		svelte({
