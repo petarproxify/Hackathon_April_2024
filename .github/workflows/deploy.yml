@@ -21,8 +21,14 @@ jobs:
     - name: Install dependencies
       run: npm install
 
+    - name: Clean Build Dir 
+      run: rm -rf public/build
+
     - name: Build the Svelte app
       run: npm run build
+
+    - name: Display build folder contents
+      run: ls public/build      
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
