@@ -35,7 +35,7 @@ export default {
         sourcemap: true,
         format: 'iife',
         name: 'app',
-        file: 'Hackathon_April_2024//build/bundle.js',
+        file: 'Hackathon_April_2024/public/build/bundle.js',
     },
     plugins: [
         svelte({
