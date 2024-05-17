@@ -35,7 +35,7 @@ export default {
         sourcemap: true,
         format: 'iife',
         name: 'app',
-        file: 'Hackathon_April_2024/public/build/bundle.js',
+        file: 'public/build/bundle.js',
     },
     plugins: [
         svelte({
@@ -43,7 +43,7 @@ export default {
                 dev: !production
             }
         }),
-        css({ output: 'bundle.css' }),
+        css({ output: 'public/build/bundle.css' }),
         resolve({
             browser: true,
             dedupe: ['svelte']
